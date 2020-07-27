@@ -5,18 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
+    <!-- Google Fonts style sheet -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- BootStap code -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- My personal sheets -->
     <link rel="stylesheet" href="Assets/style.css" />
     <link rel="javascript" href="./Assets/java.js" />
   </head>
   <body>
-    <nav>
-      <div id="highscore">
-        <a href="#"><h4>View Highscore</h4></a>
+    <header class="container-fluid">
+      <!-- This shows a hyperlink to your HS's on the left-top corner-->
+      <div class="row">
+        <div class="col-md-6">
+          <a class="highscoreDisplay" href="#"><h4>View Highscore</h4></a>
+        </div>
+
+        <!-- This shows the countdown of the timer on the right-top corner -->
+        <div class="col-md-6">
+          <h4 class="timerDisplay">Time:</h4>
+        </div>
       </div>
-    </nav>
-    <section>
-      <h1>JavaScript Quiz Time!</h1>
-      <h3>Let's play! Click "Start" to begin!</h3>
+    </header>
+
+    <!-- Section where the body of the quiz is displayed -->
+    <section class="container contentStyle">
+      <!-- Title of quiz -->
+      <div class="row" id="quizTitle">
+        <h1>JavaScript Quiz Time!</h1>
+      </div>
+
+      <!-- Body of quiz -->
+      <div class="row" id="quizContent">
+        <h3>Let's play! Click "Begin" to start!</h3>
+      </div>
+
+      <!-- Begin button that starts the quiz -->
+      <div class="row" id="button">
+        <button>Begin</button>
+      </div>
     </section>
   </body>
 </html>

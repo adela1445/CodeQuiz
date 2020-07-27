@@ -1,0 +1,19 @@
+body {
+  background-color: palevioletred;
+  font-family: "Indie Flower", cursive;
+  color: whitesmoke;
+}
+
+.highscoreDisplay {
+  float: left;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.timerDisplay {
+  float: right;
+}
+
+.contentStyle {
+  background-color: paleturquoise;
+}
