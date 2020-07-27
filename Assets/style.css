@@ -14,6 +14,15 @@ body {
   float: right;
 }
 
-.contentStyle {
+.quizContainerStyle {
   background-color: paleturquoise;
+  color: palevioletred;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 1rem;
+}
+div.innerContentStyle {
+  display: list-item;
+  padding-top: 1rem;
 }
