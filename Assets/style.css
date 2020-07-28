@@ -11,7 +11,10 @@ body {
   text-decoration: none;
   color: whitesmoke;
 }
-
+a:hover {
+  color: darkslateblue;
+  text-decoration: none;
+}
 .timerDisplay {
   float: right;
 }

@@ -2,7 +2,7 @@
 //button will be called "Begin" --> Done
 //Create a Timer container --> Done
 //A timer will start
-//A question populates ---> need to create at least 4 questions --- Below contains an array of questions, options, and answers
+//A question populates ---> need to create at least 4 questions --- Below contains an array of questions, options, and answers -- set of ten questions
 
 var questions = [
   {
@@ -88,7 +88,27 @@ var questions = [
   },
 ];
 
-//Four options of correct answers display ---> four choices for each question
 //if answered incorrectly, time is subtracted and new questions displays
+// Created variables for my timer and scorecard
+var score = 0;
+var timer;
+
+// Function that will start the timer once the Begin button is pressed
+function startQuiz() {
+  timeAvail = 120;
+  document.getElementById("timerCountdown").textContent = timeAvail;
+
+  timer = setInterval(function () {
+    timeAvail--;
+    document.getElementById("timerCountdown").textContent = timeAvail;
+
+    if (timeAvail <= 0) {
+      clearInterval(timer);
+      gameover();
+    }
+  }, 1000);
+}
+startQuiz();
+
 //if all questions are answered or time reaches zero the game is over
 //create a text box to type initials
