@@ -1,9 +1,11 @@
+/* Overall styling for everything */
 body {
-  background-color: palevioletred;
+  background-color: steelblue;
   font-family: "Indie Flower", cursive;
   color: whitesmoke;
 }
 
+/* Header styling for the highscore & timer */
 .highscoreDisplay {
   float: left;
   text-decoration: none;
@@ -14,15 +16,26 @@ body {
   float: right;
 }
 
+/* Section of body --- Styling the main container */
 .quizContainerStyle {
   background-color: paleturquoise;
-  color: palevioletred;
+  color: darkslateblue;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
   padding-bottom: 1rem;
+  border-style: dashed;
+  border-width: thick;
+  border-color: lightseagreen;
 }
+/* Styling the title, content, and button of section quiz */
 div.innerContentStyle {
-  display: list-item;
+  display: block;
   padding-top: 1rem;
+}
+/* Styling for button only just to make it pretty */
+button {
+  background-color: lightseagreen;
+  color: lightcyan;
+  font-size: larger;
 }
