@@ -91,24 +91,27 @@ var questions = [
 //if answered incorrectly, time is subtracted and new questions displays
 // Created variables for my timer and scorecard
 var score = 0;
-var timer;
+var timerEl = document.getElementById("timerCountdown");
 
 // Function that will start the timer once the Begin button is pressed
-function startQuiz() {
-  timeAvail = 120;
-  document.getElementById("timerCountdown").textContent = timeAvail;
+document.getElementById("startBtn").addEventListener("click", function () {
+  function startQuiz() {
+    var timeAvail = 120;
 
-  timer = setInterval(function () {
-    timeAvail--;
-    document.getElementById("timerCountdown").textContent = timeAvail;
+    var timer = setInterval(function () {
+      timerEl.textContent = timeAvail;
+      timeAvail--;
 
-    if (timeAvail <= 0) {
-      clearInterval(timer);
-      gameover();
-    }
-  }, 1000);
-}
-startQuiz();
+      if (timeAvail <= 0) {
+        gameover();
+        clearInterval(timer);
+      }
+    }, 1000);
+  }
+  startQuiz();
+});
+
+function gameover() {}
 
 //if all questions are answered or time reaches zero the game is over
 //create a text box to type initials
