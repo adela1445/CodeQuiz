@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Code Quiz</title>
 
     <!-- Google Fonts style sheet -->
     <link
@@ -36,23 +36,59 @@
       </div>
     </header>
 
+    <!--------------------------------------------------------------------------------->
     <!-- Section where the body of the quiz is displayed -->
-    <section class="container quizContainerStyle" id="quizContainer">
+    <section class="container quizContainerStyle" id="quizIntoSection">
       <!-- Title of quiz -->
-      <div class="row innerContentStyle" id="quizTitle">
+      <div class="row innerContentStyle">
         <h1>JavaScript Quiz Time!</h1>
       </div>
 
-      <!-- Body of quiz -->
-      <div class="row innerContentStyle" id="quizContent">
+      <div class="row innerContentStyle">
         <h3>Let's play! Click "Begin" to start!</h3>
       </div>
 
       <!-- Begin button that starts the quiz -->
-      <div class="row innerContentStyle" id="button">
+      <div class="row innerContentStyle">
         <button id="startBtn">Begin</button>
       </div>
     </section>
+
+    <!----------------------------------------------------------------------------->
+    <!-- Section where the body of the quiz is displayed -->
+    <section class="container quizContainerStyle" id="quizContentSection">
+      <!-- Area in which question will display-->
+      <div class="row innerContentStyle">
+        <h2 id="questionDisplay"></h2>
+      </div>
+
+      <!-- Area where choices will display -->
+      <div class="row innerContentStyle">
+        <h3 id="answerChoices"></h3>
+      </div>
+    </section>
+
+    <!----------------------------------------------------------------------------->
+    <!-- Section where the quiz results are going to live -->
+    <section class="container quizContainerStyle" id="resultSection">
+      <div class="row innerContentStyle" id="quizTitle">
+        <h1>Congratulations!</h1>
+        <h2>You have answered all the questions.</h2>
+      </div>
+
+      <!-- shows actual score -->
+      <div class="row innerContentStyle" id="quizContent">
+        <h3>You scored <span id="scoreResults">0</span>/100</h3>
+      </div>
+
+      <div>
+        <input type="text" placeholder="Enter your Initials" id="userName" />
+      </div>
+      <div class="row innerContentStyle" id="button">
+        <button id="submitBtn" type="submit">Save Score!</button>
+      </div>
+    </section>
+
     <script src="./Assets/java.js" type="text/javascript"></script>
   </body>
 </html>

@@ -92,6 +92,7 @@ var score = 0;
 var timerEl = document.getElementById("timerCountdown");
 var btn = document.getElementById("startBtn");
 var timer;
+var currentQuestions = 0;
 // Function that will start the timer once the Begin button is pressed
 btn.addEventListener("click", function () {
   function startQuiz() {
@@ -115,19 +116,7 @@ var quizBody = document.getElementById("quizContainer");
 function gameover() {
   clearInterval(timer);
 
-  var resultDetails =
-    `<h2>Game over!</h2>
-     <h3>You got a ` +
-    score +
-    ` /100!</h3>  
-     <h3>That means you got ` +
-    score / 20 +
-    ` questions correct!</h3>
-    
-     <input type="text" id="name" placeholder="First name">
-   
-     <button onclick="setScore()">Set score!</button>`;
-  console.log(resultDetails);
+  var resultDetails = console.log(resultDetails);
   quizBody.innerHTML = resultDetails;
 }
 
