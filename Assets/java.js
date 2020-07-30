@@ -1,5 +1,3 @@
-// Create a button ---> Done
-//button will be called "Begin" --> Done
 //Create a Timer container --> Done
 //A timer will start
 //A question populates ---> need to create at least 4 questions --- Below contains an array of questions, options, and answers -- set of ten questions
@@ -92,26 +90,56 @@ var questions = [
 // Created variables for my timer and scorecard
 var score = 0;
 var timerEl = document.getElementById("timerCountdown");
-
+var btn = document.getElementById("startBtn");
+var timer;
 // Function that will start the timer once the Begin button is pressed
-document.getElementById("startBtn").addEventListener("click", function () {
+btn.addEventListener("click", function () {
   function startQuiz() {
-    var timeAvail = 120;
+    var timeAvail = 12;
 
-    var timer = setInterval(function () {
+    timer = setInterval(function () {
       timerEl.textContent = timeAvail;
       timeAvail--;
 
       if (timeAvail <= 0) {
-        gameover();
         clearInterval(timer);
+        gameover();
       }
     }, 1000);
   }
   startQuiz();
 });
 
-function gameover() {}
+var quizBody = document.getElementById("quizContainer");
+
+function gameover() {
+  clearInterval(timer);
+
+  var resultDetails =
+    `<h2>Game over!</h2>
+     <h3>You got a ` +
+    score +
+    ` /100!</h3>  
+     <h3>That means you got ` +
+    score / 20 +
+    ` questions correct!</h3>
+    
+     <input type="text" id="name" placeholder="First name">
+   
+     <button onclick="setScore()">Set score!</button>`;
+  console.log(resultDetails);
+  quizBody.innerHTML = resultDetails;
+}
+
+//storing scores and intials in local storage
+function storingScores() {
+  localStorage.getItem("Highscore", Score);
+
+  localStorage.getItem("Initials of Name", Initials);
+}
 
 //if all questions are answered or time reaches zero the game is over
 //create a text box to type initials
+function renderQuestions() {
+  var currentQuestions = document.querySelector("h1");
+}
