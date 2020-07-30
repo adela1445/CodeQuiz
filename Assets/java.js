@@ -88,47 +88,171 @@ var questions = [
 
 //if answered incorrectly, time is subtracted and new questions displays
 // Created variables for my timer and scorecard
+
+//setting the numerical variables for the functions.. scores and timers..
+
 var score = 0;
-var timerEl = document.getElementById("timerCountdown");
-var btn = document.getElementById("startBtn");
+var counter = 0;
+
+var timeLeft = 0;
+
 var timer;
-var currentQuestions = 0;
-// Function that will start the timer once the Begin button is pressed
-btn.addEventListener("click", function () {
-  function startQuiz() {
-    var timeAvail = 12;
 
-    timer = setInterval(function () {
-      timerEl.textContent = timeAvail;
-      timeAvail--;
+//starts the countdown timer once user clicks the 'start' button
 
-      if (timeAvail <= 0) {
-        clearInterval(timer);
-        gameover();
-      }
-    }, 1000);
-  }
-  startQuiz();
-});
+function start() {
+  timeLeft = questions.length * 15;
 
-var quizBody = document.getElementById("quizContainer");
+  document.getElementById("timerCountdown").innerHTML = timeLeft;
 
-function gameover() {
+  timer = setInterval(function () {
+    timeLeft--;
+
+    document.getElementById("timerCountdown").innerHTML = timeLeft;
+
+    //proceed to end the game function when timer is below 0 at any time
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+
+      endGame();
+    }
+  }, 1000);
+
+  next();
+}
+
+//stop the timer to end the game
+
+function endGame() {
   clearInterval(timer);
 
-  var resultDetails = console.log(resultDetails);
-  quizBody.innerHTML = resultDetails;
+  var quizContent =
+    `
+
+
+   <h2>Game over!</h2>
+
+
+   <h3>You got a ` +
+    score +
+    ` /100!</h3>
+
+
+   <h3>That means you got ` +
+    score / 20 +
+    ` questions correct!</h3>
+
+
+   <input type="text" id="name" placeholder="First name">
+
+
+   <button onclick="setScore()">Set score!</button>`;
+
+  document.getElementById("quizContainer").innerHTML = quizContent;
 }
 
-//storing scores and intials in local storage
-function storingScores() {
-  localStorage.getItem("Highscore", Score);
+//store the scores on local storage
 
-  localStorage.getItem("Initials of Name", Initials);
+function setScore() {
+  localStorage.setItem("highscore", score);
+
+  localStorage.setItem("highscoreName", document.getElementById("name").value);
+
+  getScore();
 }
 
-//if all questions are answered or time reaches zero the game is over
-//create a text box to type initials
-function renderQuestions() {
-  var currentQuestions = document.querySelector("h1");
+function getScore() {
+  var quizContent =
+    `<h2>` +
+    localStorage.getItem("highscoreName") +
+    `'s highscore is:</h2>
+   <h1>` +
+    localStorage.getItem("highscore") +
+    `</h1>
+   <br>
+   <button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>`;
+
+  document.getElementById("quizContainer").innerHTML = quizContent;
+}
+
+//clears the score name and value in the local storage if the user selects 'clear score'
+
+function clearScore() {
+  localStorage.setItem("highscore", "");
+
+  localStorage.setItem("highscoreName", "");
+
+  resetGame();
+}
+
+//reset the game
+
+function resetGame() {
+  clearInterval(timer);
+
+  score = 0;
+
+  counter = 0;
+
+  timeLeft = 0;
+
+  timer = null;
+
+  document.getElementById("timerCountdown").innerHTML = timeLeft;
+
+  var quizContent = `
+  
+
+   <h3>
+
+
+       Click to play again!  
+
+
+   </h3>
+
+
+   <button onclick="start()">Start!</button>`;
+
+  document.getElementById("quizContainer").innerHTML = quizContent;
+}
+
+//deduct 15seconds from the timer if user chooses an incorrect answer
+
+//loops through the questions
+
+function next() {
+  var currentQuestions = questions[counter];
+  counter++;
+
+  if (counter >= questions.length - 1) {
+    endGame();
+
+    return;
+  }
+
+  var quizContent = "<h2>" + currentQuestions.question + "</h2>";
+
+  for (var i = 0; i < currentQuestions.option.length; i++) {
+    var buttonCode = '<button onclick="[ANS]">[options]</button>';
+
+    buttonCode = buttonCode.replace("[options]", currentQuestions.option[i]);
+
+    if (currentQuestions.option[i] == currentQuestions.answer) {
+      buttonCode = buttonCode.replace("[ANS]", "correct()");
+      score += 10;
+
+      next();
+    } else {
+      buttonCode = buttonCode.replace("[ANS]", "incorrect()");
+      timeLeft -= 10;
+
+      next();
+    }
+
+    quizContent += buttonCode;
+  }
+
+  document.getElementById("quizContainer").innerHTML = quizContent;
 }
