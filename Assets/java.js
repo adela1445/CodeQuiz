@@ -131,7 +131,7 @@ function endGame() {
     `
 
 
-   <h2>Game over!</h2>
+   <h1>Game over!</h1>
 
 
    <h3>You got a ` +
@@ -144,17 +144,17 @@ function endGame() {
     ` questions correct!</h3>
 
 
-   <input type="text" id="name" placeholder="First name">
+   <input type="text" id="name" placeholder="Enter Your Intitials ">
 
 
-   <button onclick="setScore()">Set score!</button>`;
+   <button onclick="storeScore()">Submit score!</button>`;
 
   document.getElementById("quizContainer").innerHTML = quizContent;
 }
 
 //store the scores on local storage
 
-function setScore() {
+function storeScore() {
   localStorage.setItem("highscore", score);
 
   localStorage.setItem("highscoreName", document.getElementById("name").value);
@@ -197,7 +197,7 @@ function resetGame() {
 
   timeLeft = 0;
 
-  timer = null;
+  timer = 0;
 
   document.getElementById("timerCountdown").innerHTML = timeLeft;
 
@@ -226,26 +226,20 @@ function next() {
   var currentQuestions = questions[counter];
   counter++;
 
-  if (counter >= questions.length - 1) {
-    endGame();
-
-    return;
-  }
-
   var quizContent = "<h2>" + currentQuestions.question + "</h2>";
 
   for (var i = 0; i < currentQuestions.option.length; i++) {
-    var buttonCode = '<button onclick="[ANS]">[options]</button>';
+    var buttonCode = '<button onclick="Answer">[options]</button>';
 
     buttonCode = buttonCode.replace("[options]", currentQuestions.option[i]);
 
     if (currentQuestions.option[i] == currentQuestions.answer) {
-      buttonCode = buttonCode.replace("[ANS]", "correct()");
+      buttonCode = buttonCode.replace("Answer", "correct()");
       score += 10;
 
       next();
     } else {
-      buttonCode = buttonCode.replace("[ANS]", "incorrect()");
+      buttonCode = buttonCode.replace("Answer", "incorrect()");
       timeLeft -= 10;
 
       next();
@@ -253,6 +247,10 @@ function next() {
 
     quizContent += buttonCode;
   }
+  if (counter >= questions.length - 1) {
+    endGame();
 
+    return;
+  }
   document.getElementById("quizContainer").innerHTML = quizContent;
 }
