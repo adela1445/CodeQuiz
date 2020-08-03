@@ -94,62 +94,59 @@ var questions = [
 var score = 0;
 var counter = 0;
 
-var timeLeft = 0;
+var timeLeft = "";
 
 var timer;
+var timerOnScreen = document.getElementById("timerCountdown");
 
+var btn = document.querySelector("#btn");
 //starts the countdown timer once user clicks the 'start' button
-
-function start() {
-  timeLeft = questions.length * 15;
-
-  document.getElementById("timerCountdown").innerHTML = timeLeft;
-
-  timer = setInterval(function () {
-    timeLeft--;
-
-    document.getElementById("timerCountdown").innerHTML = timeLeft;
-
-    //proceed to end the game function when timer is below 0 at any time
-
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-
-      endGame();
+btn = addEventListener("click", function () {
+  function start() {
+    timeLeft = questions.length * 15;
+    if (timerOnScreen) {
+      timerOnScreen.textContent = timeLeft;
     }
-  }, 1000);
+    timer = setInterval(function () {
+      timeLeft--;
 
-  next();
-}
+      //proceed to end the game function when timer is below 0 at any time
+
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+
+        endGame();
+      }
+    }, 1000);
+    if (timeLeft) {
+      next();
+    }
+  }
+  start();
+});
 
 //stop the timer to end the game
-
+var quizContent = document.getElementById("quizContainer");
 function endGame() {
   clearInterval(timer);
 
-  var quizContent =
-    `
+  var h1 = document.createElement("h1");
+  h1.textContent = "Game Over!";
 
+  var displayScore = document.createElement("h3");
+  displayScore.textContent = "You got a " + score + " /100!";
 
-   <h1>Game over!</h1>
+  var numCorrectQ = document.createElement("h3");
+  numCorrectQ.textContent =
+    "That means you got " + score / 20 + "questions correct!";
 
+  var submitScore = document.createElement("button");
+  submitScore.textContent = "Submit Score!";
 
-   <h3>You got a ` +
-    score +
-    ` /100!</h3>
-
-
-   <h3>That means you got ` +
-    score / 20 +
-    ` questions correct!</h3>
-
-
-   <input type="text" id="name" placeholder="Enter Your Intitials ">
-
-
-   <button onclick="storeScore()">Submit score!</button>`;
-
-  document.getElementById("quizContainer").innerHTML = quizContent;
+  var intialInput = document.createElement("input");
+  intialInput.setAttribute("type", "text");
+  intialInput.setAttribute("id", "name");
+  intialInput.setAttribute("placeholder", "Enter your initials");
 }
 
 //store the scores on local storage
