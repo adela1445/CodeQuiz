@@ -147,6 +147,15 @@ function endGame() {
   intialInput.setAttribute("type", "text");
   intialInput.setAttribute("id", "name");
   intialInput.setAttribute("placeholder", "Enter your initials");
+
+  quizContent.appendChild(
+    h1,
+    displayScore,
+    numCorrectQ,
+    submitScore,
+    intialInput
+  );
+  console.log(quizContent);
 }
 
 //store the scores on local storage
